@@ -1,0 +1,333 @@
+/* ==========================================
+   Stylus-CSS v1.0-ChatGPT 
+   仿深色 / 莫兰迪 / 马卡龙高级色系
+
+   适用域名：
+   - chatgpt.com
+   - chat.openai.com
+   ========================================== */
+
+/* ==========================================
+   0. 主题变量
+   ========================================== */
+:root {
+  --gpt-font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+  --gpt-font-code: "JetBrains Mono", "Fira Code", "SFMono-Regular", "Consolas", monospace;
+
+  --gpt-text: #4a4e59;
+  --gpt-heading: #33363f;
+  --gpt-muted: #6f7782;
+
+  --gpt-strong: #a86b5e;
+  --gpt-em: #72728f;
+
+  --gpt-code-bg: #eef2f5;
+  --gpt-code-border: #dce4e8;
+  --gpt-code-text: #5c7080;
+
+  --gpt-strong-code-bg: #f7ebed;
+  --gpt-strong-code-border: #e8d5d8;
+  --gpt-strong-code-text: #9e6371;
+
+  --gpt-em-code-bg: #eaf2ed;
+  --gpt-em-code-border: #d3e3d9;
+  --gpt-em-code-text: #5a8067;
+
+  --gpt-link: #6b7f9f;
+  --gpt-quote-bg: #fbf8f7;
+  --gpt-quote-border: #d8c3bf;
+  --gpt-table-border: #e3e7eb;
+  --gpt-table-head-bg: #f7f8fa;
+  --gpt-codeblock-bg: #f8f8f8;
+  --gpt-codeblock-border: #eceff2;
+}
+
+/* ==========================================
+   1. 全局基础排版
+   只覆盖 ChatGPT 对话正文与输入区，不主动污染侧栏和按钮。
+   ========================================== */
+main :where(.markdown, .prose),
+main :where([data-message-author-role="assistant"], [data-message-author-role="user"]) :where(.markdown, .prose, .whitespace-pre-wrap),
+main :where([data-testid^="conversation-turn"]) :where(.markdown, .prose, .whitespace-pre-wrap),
+#prompt-textarea,
+textarea {
+  font-family: var(--gpt-font-main) !important;
+  color: var(--gpt-text) !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+main :where(.markdown, .prose) :where(p, div, li, blockquote, table, td, th),
+main :where([data-message-author-role]) :where(p, li, blockquote, td, th),
+#prompt-textarea,
+textarea {
+  line-height: 1.8 !important;
+}
+
+main :where(.markdown, .prose) p {
+  margin-top: 0.72em !important;
+  margin-bottom: 0.72em !important;
+}
+
+/* ==========================================
+   2. 标题系统
+   沉稳碳灰色，仿深色但不压黑。
+   ========================================== */
+main :where(.markdown, .prose) :where(h1, h2, h3, h4, h5, h6),
+main :where([data-message-author-role="assistant"]) :where(h1, h2, h3, h4, h5, h6) {
+  font-weight: 650 !important;
+  line-height: 1.42 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--gpt-heading) !important;
+}
+
+main :where(.markdown, .prose) h1 {
+  font-size: 1.45em !important;
+  margin-top: 1.08em !important;
+  margin-bottom: 0.48em !important;
+}
+
+main :where(.markdown, .prose) h2 {
+  font-size: 1.25em !important;
+  margin-top: 1em !important;
+  margin-bottom: 0.42em !important;
+}
+
+main :where(.markdown, .prose) h3 {
+  font-size: 1.12em !important;
+  margin-top: 0.92em !important;
+  margin-bottom: 0.36em !important;
+}
+
+main :where(.markdown, .prose) :where(h4, h5, h6) {
+  font-size: 1em !important;
+  margin-top: 0.82em !important;
+  margin-bottom: 0.3em !important;
+}
+
+/* ==========================================
+   3. 普通文本强调系统
+   核心结论 / 动词 -> 莫兰迪沉木红 / 暗陶土色
+   次要属性 / 状态 -> 莫兰迪烟雾蓝紫
+   ========================================== */
+main :where(.markdown, .prose, [data-message-author-role]) :where(strong, b),
+main :where(.markdown, .prose, [data-message-author-role]) [style*="font-weight:bold"],
+main :where(.markdown, .prose, [data-message-author-role]) [style*="font-weight: bold"],
+main :where(.markdown, .prose, [data-message-author-role]) [style*="font-weight:700"],
+main :where(.markdown, .prose, [data-message-author-role]) [style*="font-weight: 700"] {
+  font-weight: 650 !important;
+  color: var(--gpt-strong) !important;
+}
+
+main :where(.markdown, .prose, [data-message-author-role]) :where(em, i),
+main :where(.markdown, .prose, [data-message-author-role]) [style*="font-style:italic"],
+main :where(.markdown, .prose, [data-message-author-role]) [style*="font-style: italic"] {
+  font-style: italic !important;
+  color: var(--gpt-em) !important;
+}
+
+/* ==========================================
+   4. 链接系统
+   新增但克制：蓝灰链接，避免破坏莫兰迪主色。
+   ========================================== */
+main :where(.markdown, .prose) a {
+  color: var(--gpt-link) !important;
+  text-decoration-color: rgba(107, 127, 159, 0.36) !important;
+  text-underline-offset: 3px !important;
+}
+
+main :where(.markdown, .prose) a:hover {
+  color: #536f94 !important;
+  text-decoration-color: rgba(83, 111, 148, 0.68) !important;
+}
+
+/* ==========================================
+   5. 行内代码块系统：三级高亮机制
+   Level 1: 普通行内代码 -> 极浅灰蓝
+   ========================================== */
+main :where(.markdown, .prose) :where(p, li, td, th, blockquote, h1, h2, h3, h4, h5, h6) code:not(pre code),
+main :where(.markdown, .prose) :where(strong, b, em, i) code:not(pre code),
+main :where([data-message-author-role]) :where(p, li, td, th, blockquote, strong, b, em, i) code:not(pre code) {
+  background-color: var(--gpt-code-bg) !important;
+  border: 1px solid var(--gpt-code-border) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  margin: 0 2px !important;
+  font-family: var(--gpt-font-code) !important;
+  font-size: 0.88em !important;
+  color: var(--gpt-code-text) !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  white-space: break-spaces !important;
+}
+
+/* Level 2: 核心高亮代码，加粗 + 代码 -> 干枯玫瑰粉 */
+main :where(.markdown, .prose, [data-message-author-role]) :where(strong code, b code, code strong, code b),
+main :where(.markdown, .prose, [data-message-author-role]) :where([style*="font-weight:bold"] code, [style*="font-weight: bold"] code, [style*="font-weight:700"] code, [style*="font-weight: 700"] code),
+main :where(.markdown, .prose, [data-message-author-role]) :where(code [style*="font-weight:bold"], code [style*="font-weight: bold"], code [style*="font-weight:700"], code [style*="font-weight: 700"]) {
+  background-color: var(--gpt-strong-code-bg) !important;
+  border-color: var(--gpt-strong-code-border) !important;
+  color: var(--gpt-strong-code-text) !important;
+  font-weight: 650 !important;
+  font-style: normal !important;
+}
+
+/* Level 3: 状态与协议代码，斜体 + 代码 -> 鼠尾草绿 */
+main :where(.markdown, .prose, [data-message-author-role]) :where(em code, i code, code em, code i),
+main :where(.markdown, .prose, [data-message-author-role]) :where([style*="font-style:italic"] code, [style*="font-style: italic"] code),
+main :where(.markdown, .prose, [data-message-author-role]) :where(code [style*="font-style:italic"], code [style*="font-style: italic"]) {
+  background-color: var(--gpt-em-code-bg) !important;
+  border-color: var(--gpt-em-code-border) !important;
+  color: var(--gpt-em-code-text) !important;
+  font-style: normal !important;
+  font-weight: 550 !important;
+}
+
+/* 三级高亮权重修正：
+   ChatGPT 的普通 code 规则比较强，这里用更具体的选择器确保加粗/斜体代码能盖过去。 */
+main .markdown strong code:not(pre code),
+main .markdown b code:not(pre code),
+main .prose strong code:not(pre code),
+main .prose b code:not(pre code),
+main [data-message-author-role] strong code:not(pre code),
+main [data-message-author-role] b code:not(pre code),
+main .markdown code:has(strong):not(pre code),
+main .markdown code:has(b):not(pre code),
+main .prose code:has(strong):not(pre code),
+main .prose code:has(b):not(pre code) {
+  background-color: var(--gpt-strong-code-bg) !important;
+  border-color: var(--gpt-strong-code-border) !important;
+  color: var(--gpt-strong-code-text) !important;
+  font-weight: 650 !important;
+  font-style: normal !important;
+}
+
+main .markdown em code:not(pre code),
+main .markdown i code:not(pre code),
+main .prose em code:not(pre code),
+main .prose i code:not(pre code),
+main [data-message-author-role] em code:not(pre code),
+main [data-message-author-role] i code:not(pre code),
+main .markdown code:has(em):not(pre code),
+main .markdown code:has(i):not(pre code),
+main .prose code:has(em):not(pre code),
+main .prose code:has(i):not(pre code) {
+  background-color: var(--gpt-em-code-bg) !important;
+  border-color: var(--gpt-em-code-border) !important;
+  color: var(--gpt-em-code-text) !important;
+  font-style: normal !important;
+  font-weight: 550 !important;
+}
+
+/* ==========================================
+   6. 独立代码块样式隔离
+   保持原生：不对独立代码块（pre/code）做任何渲染改写。
+   ========================================== */
+
+/* ==========================================
+   7. 列表优化
+   ========================================== */
+main :where(.markdown, .prose) :where(ul, ol),
+main :where([data-message-author-role="assistant"]) :where(ul, ol) {
+  line-height: 1.8 !important;
+}
+
+main :where(.markdown, .prose) li,
+main :where([data-message-author-role="assistant"]) li {
+  margin-bottom: 6px !important;
+}
+
+main :where(.markdown, .prose) li::marker {
+  color: #7f8793 !important;
+}
+
+/* 列表权重修正：分别处理无序列表和有序列表，避免 ChatGPT 默认样式覆盖。 */
+main .markdown ul,
+main .prose ul,
+main [data-message-author-role="assistant"] ul {
+  list-style-position: outside !important;
+  padding-left: 1.55em !important;
+  margin-top: 0.42em !important;
+  margin-bottom: 0.82em !important;
+}
+
+main .markdown ol,
+main .prose ol,
+main [data-message-author-role="assistant"] ol {
+  list-style-position: outside !important;
+  padding-left: 1.72em !important;
+  margin-top: 0.42em !important;
+  margin-bottom: 0.82em !important;
+}
+
+main .markdown ul > li,
+main .prose ul > li,
+main .markdown ol > li,
+main .prose ol > li,
+main [data-message-author-role="assistant"] :where(ul, ol) > li {
+  padding-left: 0.12em !important;
+  margin-bottom: 6px !important;
+}
+
+main .markdown ul > li::marker,
+main .prose ul > li::marker,
+main [data-message-author-role="assistant"] ul > li::marker {
+  color: #7f8793 !important;
+  font-size: 0.82em !important;
+}
+
+main .markdown ol > li::marker,
+main .prose ol > li::marker,
+main [data-message-author-role="assistant"] ol > li::marker {
+  color: var(--gpt-strong) !important;
+  font-weight: 650 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* ==========================================
+   8. 引用块
+   新增：低饱和陶土边线，接近文档批注。
+   ========================================== */
+main :where(.markdown, .prose) blockquote {
+  background: var(--gpt-quote-bg) !important;
+  border-left: 3px solid var(--gpt-quote-border) !important;
+  border-radius: 6px !important;
+  color: var(--gpt-muted) !important;
+  padding: 0.55em 0.9em !important;
+}
+
+main :where(.markdown, .prose) blockquote p {
+  color: inherit !important;
+}
+
+/* ==========================================
+   9. 表格
+   新增：轻文档化表格，不改变信息结构。
+   ========================================== */
+main :where(.markdown, .prose) table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid var(--gpt-table-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+main :where(.markdown, .prose) :where(th, td) {
+  border-color: var(--gpt-table-border) !important;
+  line-height: 1.7 !important;
+  padding: 0.62em 0.78em !important;
+}
+
+main :where(.markdown, .prose) th {
+  background-color: var(--gpt-table-head-bg) !important;
+  color: var(--gpt-heading) !important;
+  font-weight: 650 !important;
+}
+
+/* ==========================================
+   10. 选中文本
+   新增：浅陶土选区，复制时更统一。
+   ========================================== */
+main :where(.markdown, .prose) ::selection {
+  background: rgba(168, 107, 94, 0.16) !important;
+}

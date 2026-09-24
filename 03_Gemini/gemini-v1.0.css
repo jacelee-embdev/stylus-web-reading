@@ -1,0 +1,491 @@
+/* ==========================================
+   Stylus-CSS v1.0-Gemini
+   仿深色 / 莫兰迪 / 马卡龙高级色系
+
+   适用域名：
+   - gemini.google.com
+   ========================================== */
+
+
+/* ==========================================
+   0. 主题变量
+   ========================================== */
+:root {
+  --gm-font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+  --gm-font-code: "JetBrains Mono", "Fira Code", monospace;
+  --gm-font-code-block: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+
+  --gm-text: #4a4e59;
+  --gm-heading: #33363f;
+  --gm-muted: #6f7782;
+
+  --gm-strong: #bc8a80;
+  --gm-em: #72728f;
+
+  --gm-code-bg: #eef2f5;
+  --gm-code-border: #dce4e8;
+  --gm-code-text: #5c7080;
+
+  --gm-strong-code-bg: #f7ebed;
+  --gm-strong-code-border: #e8d5d8;
+  --gm-strong-code-text: #ae7683;
+
+  --gm-em-code-bg: #eaf2ed;
+  --gm-em-code-border: #d3e3d9;
+  --gm-em-code-text: #5a8067;
+
+  --gm-link: #6b7f9f;
+  --gm-link-hover: #536f94;
+  --gm-quote-bg: #fbf8f7;
+  --gm-quote-border: #d8c3bf;
+  --gm-table-border: #e3e7eb;
+  --gm-table-head-bg: #f7f8fa;
+  --gm-codeblock-bg: #f8f8f8;
+  --gm-codeblock-border: #eceff2;
+}
+
+/* ==========================================
+   1. 全局排版
+   ========================================== */
+body,
+p,
+article,
+[class*="message-content"],
+.markdown-body,
+.docx-text-block,
+.ace-line {
+  font-family: var(--gm-font-main) !important;
+  line-height: 1.8 !important;
+  color: var(--gm-text) !important;
+}
+
+:where(
+  message-content.model-response-text,
+  model-response .response-content,
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) {
+  font-family: var(--gm-font-main) !important;
+  color: var(--gm-text) !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) :where(p, li, blockquote, table, td, th) {
+  line-height: 1.8 !important;
+}
+
+/* ==========================================
+   2. 标题层级
+   ========================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+[class*="heading"],
+.docx-heading1-block,
+.docx-heading2-block,
+.docx-heading3-block,
+.docx-heading4-block,
+.docx-heading5-block,
+.docx-heading6-block {
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.05em !important;
+  color: var(--gm-heading) !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body
+) h1 {
+  font-size: 1.45em !important;
+  margin-top: 1.08em !important;
+  margin-bottom: 0.48em !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body
+) h2 {
+  font-size: 1.25em !important;
+  margin-top: 1em !important;
+  margin-bottom: 0.42em !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body
+) h3 {
+  font-size: 1.12em !important;
+  margin-top: 0.92em !important;
+  margin-bottom: 0.36em !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body
+) :where(h4, h5, h6) {
+  font-size: 1em !important;
+  margin-top: 0.82em !important;
+  margin-bottom: 0.3em !important;
+}
+
+/* ==========================================
+   3. 文本强调
+   ========================================== */
+strong,
+b,
+[style*="font-weight:bold"],
+[style*="font-weight: 700"] {
+  font-weight: 600 !important;
+  color: var(--gm-strong) !important;
+}
+
+em,
+i,
+[style*="font-style:italic"] {
+  font-style: italic !important;
+  color: var(--gm-em) !important;
+}
+
+/* ==========================================
+   4. 链接样式
+   ========================================== */
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) a {
+  color: var(--gm-link) !important;
+  text-decoration-color: rgba(107, 127, 159, 0.36) !important;
+  text-underline-offset: 3px !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) a:hover {
+  color: var(--gm-link-hover) !important;
+  text-decoration-color: rgba(83, 111, 148, 0.68) !important;
+}
+
+/* ==========================================
+   5. 行内代码
+   ========================================== */
+code:not(pre code):not(:where(.docx-code-block, .ql-syntax, [data-element-type="codeBlock"], [data-block-type="code"], [class*="code-block"], .code-block) code),
+.inline-code,
+[class*="inlineCode"],
+[data-element-type="inlineCode"] {
+  background-color: var(--gm-code-bg) !important;
+  border: 1px solid var(--gm-code-border) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  margin: 0 2px !important;
+  font-family: var(--gm-font-code) !important;
+  font-size: 0.88em !important;
+  color: var(--gm-code-text) !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+}
+
+strong code:not(pre code),
+b code:not(pre code),
+code:not(pre code) strong,
+code:not(pre code) b,
+strong .inline-code,
+b .inline-code,
+.inline-code strong,
+.inline-code b,
+[style*="font-weight:bold"] code:not(pre code),
+[style*="font-weight: 700"] code:not(pre code),
+[style*="font-weight:bold"] .inline-code,
+[style*="font-weight: 700"] .inline-code {
+  background-color: var(--gm-strong-code-bg) !important;
+  color: var(--gm-strong-code-text) !important;
+  border-color: var(--gm-strong-code-border) !important;
+  font-weight: 600 !important;
+}
+
+em code:not(pre code),
+i code:not(pre code),
+code:not(pre code) em,
+code:not(pre code) i,
+em .inline-code,
+i .inline-code,
+.inline-code em,
+.inline-code i,
+[style*="font-style:italic"] code:not(pre code),
+[style*="font-style: italic"] code:not(pre code),
+[style*="font-style:italic"] .inline-code,
+[style*="font-style: italic"] .inline-code {
+  background-color: var(--gm-em-code-bg) !important;
+  color: var(--gm-em-code-text) !important;
+  border-color: var(--gm-em-code-border) !important;
+  font-style: normal !important;
+}
+
+/* 行内代码换行 */
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body
+) :where(p, li, td, th, blockquote, h1, h2, h3, h4, h5, h6) code:not(pre code) {
+  white-space: break-spaces !important;
+}
+
+/* ==========================================
+   6. 代码块
+   保持 Gemini 原生：不对独立代码块容器做渲染改写。
+   ========================================== */
+
+/* 代码块语法高亮修复：
+   防止“行内代码”规则污染代码块内部 token，恢复原生高亮。 */
+:where(pre, .docx-code-block, .ql-syntax, [data-element-type="codeBlock"], [data-block-type="code"], [class*="code-block"], .code-block) :where(code, span, .inline-code, [class*="inlineCode"], [data-element-type="inlineCode"], strong, b, em, i) {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-style: inherit !important;
+}
+
+/* ==========================================
+   7. 列表样式
+   ========================================== */
+ul,
+ol,
+.docx-bullet-block,
+.docx-ordered-block,
+[data-element-type="bulletList"],
+[data-element-type="orderedList"] {
+  line-height: 1.8 !important;
+}
+
+li {
+  margin-bottom: 6px !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body
+) ul {
+  list-style-position: outside !important;
+  padding-left: 1.55em !important;
+  margin-top: 0.42em !important;
+  margin-bottom: 0.82em !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body
+) ol {
+  list-style-position: outside !important;
+  padding-left: 1.72em !important;
+  margin-top: 0.42em !important;
+  margin-bottom: 0.82em !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body
+) ul > li::marker {
+  color: #7f8793 !important;
+  font-size: 0.82em !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body
+) ol > li::marker {
+  color: var(--gm-strong) !important;
+  font-weight: 600 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* ==========================================
+   8. 引用块
+   ========================================== */
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) blockquote {
+  background: var(--gm-quote-bg) !important;
+  border-left: 3px solid var(--gm-quote-border) !important;
+  border-radius: 6px !important;
+  color: var(--gm-muted) !important;
+  padding: 0.55em 0.9em !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) blockquote p {
+  color: inherit !important;
+}
+
+/* ==========================================
+   9. 表格样式
+   ========================================== */
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid var(--gm-table-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) :where(th, td) {
+  border-color: var(--gm-table-border) !important;
+  line-height: 1.7 !important;
+  padding: 0.62em 0.78em !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) th {
+  background-color: var(--gm-table-head-bg) !important;
+  color: var(--gm-heading) !important;
+  font-weight: 600 !important;
+}
+
+/* ==========================================
+   10. 选区、分割线与键帽
+   ========================================== */
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) ::selection {
+  background: rgba(168, 107, 94, 0.16) !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) hr {
+  border: 0 !important;
+  border-top: 1px solid var(--gm-table-border) !important;
+  margin: 1em 0 !important;
+}
+
+:where(
+  message-content.model-response-text .markdown,
+  message-content.model-response-text .markdown-main-panel,
+  model-response .response-content .markdown,
+  model-response .response-content .markdown-main-panel,
+  [class*="message-content"] .markdown,
+  .markdown-body,
+  .docx-text-block
+) kbd {
+  font-family: var(--gm-font-main) !important;
+  font-size: 0.86em !important;
+  color: var(--gm-heading) !important;
+  background: #f4f5f7 !important;
+  border: 1px solid #d8dce2 !important;
+  border-bottom-color: #c5cad2 !important;
+  border-radius: 5px !important;
+  padding: 0.1em 0.42em !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04) !important;
+}
+

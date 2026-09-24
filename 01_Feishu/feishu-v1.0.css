@@ -1,0 +1,941 @@
+/* ==========================================
+   Stylus-CSS v1.0-feishu
+   仿深色 / 莫兰迪 / 马卡龙高级色系
+
+   适用域名：
+   - feishu.cn
+   ========================================== */
+
+/* 飞书文档渲染样式 */
+
+
+
+/* 主题变量 */
+:root {
+  --fs-font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+  --fs-font-code: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+
+  --fs-text: #4a4e59;
+  --fs-heading: #33363f;
+  --fs-muted: #6f7782;
+
+  --fs-strong: #a86b5e;
+  --fs-em: #72728f;
+
+  --fs-code-bg: #eef2f5;
+  --fs-code-border: #dce4e8;
+  --fs-code-text: #5c7080;
+
+  --fs-strong-code-bg: #f7ebed;
+  --fs-strong-code-border: #e8d5d8;
+  --fs-strong-code-text: #9e6371;
+
+  --fs-em-code-bg: #eaf2ed;
+  --fs-em-code-border: #d3e3d9;
+  --fs-em-code-text: #5a8067;
+
+  --fs-link: #6b7f9f;
+  --fs-quote-bg: #faf9f8;
+  --fs-quote-border: #ccbcb5;
+  --fs-quote-outline: #e7dfdb;
+  --fs-quote-text: #5d6673;
+  --fs-table-border: #e3e7eb;
+  --fs-table-head-bg: #f7f8fa;
+  --fs-codeblock-bg: #f8f8f8;
+  --fs-codeblock-border: #eceff2;
+}
+
+/* 全局正文 */
+body,
+article,
+.markdown-body,
+[class*="message-content"],
+.docx-text-block,
+.docx-heading1-block,
+.docx-heading2-block,
+.docx-heading3-block,
+.docx-heading4-block,
+.docx-heading5-block,
+.docx-heading6-block,
+.docx-bullet-block,
+.docx-ordered-block,
+.docx-quote-block,
+.docx-table-block,
+[data-element-type="text"],
+[data-element-type="paragraph"],
+[data-element-type="bulletList"],
+[data-element-type="orderedList"],
+[data-element-type="quote"],
+.ace-line {
+  font-family: var(--fs-font-main) !important;
+  color: var(--fs-text) !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+p,
+article,
+.markdown-body,
+.markdown-body p,
+.markdown-body li,
+.docx-text-block,
+.docx-bullet-block,
+.docx-ordered-block,
+.docx-quote-block,
+[data-element-type="paragraph"],
+[data-element-type="bulletList"],
+[data-element-type="orderedList"],
+[data-element-type="quote"],
+td,
+th {
+  line-height: 1.8 !important;
+}
+
+p,
+.docx-text-block,
+.markdown-body p {
+  margin-top: 0.72em !important;
+  margin-bottom: 0.72em !important;
+}
+
+/* 标题层级 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+[class*="heading"],
+.docx-heading1-block,
+.docx-heading2-block,
+.docx-heading3-block,
+.docx-heading4-block,
+.docx-heading5-block,
+.docx-heading6-block,
+[data-element-type="heading"],
+[data-element-type="heading1"],
+[data-element-type="heading2"],
+[data-element-type="heading3"],
+[data-element-type="heading4"],
+[data-element-type="heading5"],
+[data-element-type="heading6"] {
+  font-family: var(--fs-font-main) !important;
+  font-weight: 650 !important;
+  line-height: 1.42 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--fs-heading) !important;
+}
+
+h1,
+.docx-heading1-block,
+[data-element-type="heading1"] {
+  font-size: 1.45em !important;
+  margin-top: 1.08em !important;
+  margin-bottom: 0.48em !important;
+}
+
+h2,
+.docx-heading2-block,
+[data-element-type="heading2"] {
+  font-size: 1.25em !important;
+  margin-top: 1em !important;
+  margin-bottom: 0.42em !important;
+}
+
+h3,
+.docx-heading3-block,
+[data-element-type="heading3"] {
+  font-size: 1.12em !important;
+  margin-top: 0.92em !important;
+  margin-bottom: 0.36em !important;
+}
+
+h4,
+h5,
+h6,
+.docx-heading4-block,
+.docx-heading5-block,
+.docx-heading6-block,
+[data-element-type="heading4"],
+[data-element-type="heading5"],
+[data-element-type="heading6"] {
+  font-size: 1em !important;
+  margin-top: 0.82em !important;
+  margin-bottom: 0.3em !important;
+}
+
+/* 强调与链接 */
+strong,
+b,
+[style*="font-weight:bold"],
+[style*="font-weight: bold"],
+[style*="font-weight:700"],
+[style*="font-weight: 700"],
+[style*="font-weight: 800"] {
+  font-weight: 650 !important;
+  color: var(--fs-strong) !important;
+}
+
+em,
+i,
+[style*="font-style:italic"],
+[style*="font-style: italic"] {
+  font-style: italic !important;
+  color: var(--fs-em) !important;
+}
+
+a,
+.markdown-body a,
+.docx-text-block a,
+[data-element-type="link"] {
+  color: var(--fs-link) !important;
+  text-decoration-color: rgba(107, 127, 159, 0.36) !important;
+  text-underline-offset: 3px !important;
+}
+
+a:hover,
+.markdown-body a:hover,
+.docx-text-block a:hover {
+  color: #536f94 !important;
+  text-decoration-color: rgba(83, 111, 148, 0.68) !important;
+}
+
+/* 行内代码 */
+.inline-code,
+[class*="inlineCode"],
+[data-element-type="inlineCode"],
+span[style*="monospace"]:not(.ace-line span),
+span[style*="JetBrains Mono"],
+span[style*="Fira Code"],
+span[style*="Consolas"] {
+  background-color: var(--fs-code-bg) !important;
+  border: 1px solid var(--fs-code-border) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  margin: 0 2px !important;
+  font-family: var(--fs-font-code) !important;
+  font-size: 0.88em !important;
+  color: var(--fs-code-text) !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  white-space: break-spaces !important;
+}
+
+strong code:not(pre code),
+b code:not(pre code),
+code strong,
+code b,
+strong .inline-code,
+b .inline-code,
+.inline-code strong,
+.inline-code b,
+strong [class*="inlineCode"],
+b [class*="inlineCode"],
+[class*="inlineCode"] strong,
+[class*="inlineCode"] b,
+strong [data-element-type="inlineCode"],
+b [data-element-type="inlineCode"],
+[data-element-type="inlineCode"] strong,
+[data-element-type="inlineCode"] b,
+code[style*="font-weight:bold"],
+code[style*="font-weight: bold"],
+code[style*="font-weight:700"],
+code[style*="font-weight: 700"],
+.inline-code[style*="font-weight:bold"],
+.inline-code[style*="font-weight: bold"],
+.inline-code[style*="font-weight:700"],
+.inline-code[style*="font-weight: 700"],
+[class*="inlineCode"][style*="font-weight:bold"],
+[class*="inlineCode"][style*="font-weight: bold"],
+[class*="inlineCode"][style*="font-weight:700"],
+[class*="inlineCode"][style*="font-weight: 700"],
+[data-element-type="inlineCode"][style*="font-weight:bold"],
+[data-element-type="inlineCode"][style*="font-weight: bold"],
+[data-element-type="inlineCode"][style*="font-weight:700"],
+[data-element-type="inlineCode"][style*="font-weight: 700"],
+[style*="font-weight:bold"] code:not(pre code),
+[style*="font-weight: bold"] code:not(pre code),
+[style*="font-weight:700"] code:not(pre code),
+[style*="font-weight: 700"] code:not(pre code),
+[style*="font-weight:bold"] .inline-code,
+[style*="font-weight: bold"] .inline-code,
+[style*="font-weight:700"] .inline-code,
+[style*="font-weight: 700"] .inline-code,
+code:has(strong),
+code:has(b),
+.inline-code:has(strong),
+.inline-code:has(b),
+[class*="inlineCode"]:has(strong),
+[class*="inlineCode"]:has(b) {
+  background-color: var(--fs-strong-code-bg) !important;
+  border-color: var(--fs-strong-code-border) !important;
+  color: var(--fs-strong-code-text) !important;
+  font-weight: 650 !important;
+  font-style: normal !important;
+}
+
+em code:not(pre code),
+i code:not(pre code),
+code em,
+code i,
+em .inline-code,
+i .inline-code,
+.inline-code em,
+.inline-code i,
+em [class*="inlineCode"],
+i [class*="inlineCode"],
+[class*="inlineCode"] em,
+[class*="inlineCode"] i,
+em [data-element-type="inlineCode"],
+i [data-element-type="inlineCode"],
+[data-element-type="inlineCode"] em,
+[data-element-type="inlineCode"] i,
+code[style*="font-style:italic"],
+code[style*="font-style: italic"],
+.inline-code[style*="font-style:italic"],
+.inline-code[style*="font-style: italic"],
+[class*="inlineCode"][style*="font-style:italic"],
+[class*="inlineCode"][style*="font-style: italic"],
+[data-element-type="inlineCode"][style*="font-style:italic"],
+[data-element-type="inlineCode"][style*="font-style: italic"],
+[style*="font-style:italic"] code:not(pre code),
+[style*="font-style: italic"] code:not(pre code),
+[style*="font-style:italic"] .inline-code,
+[style*="font-style: italic"] .inline-code,
+code:has(em),
+code:has(i),
+.inline-code:has(em),
+.inline-code:has(i),
+[class*="inlineCode"]:has(em),
+[class*="inlineCode"]:has(i) {
+  background-color: var(--fs-em-code-bg) !important;
+  border-color: var(--fs-em-code-border) !important;
+  color: var(--fs-em-code-text) !important;
+  font-style: normal !important;
+  font-weight: 550 !important;
+}
+
+/* 代码块
+   保持飞书原生：不对独立代码块容器及其内部元素做渲染改写。 */
+
+/* 代码块语法高亮修复：
+   避免“行内代码”规则误伤代码块 token，确保不同语言的高亮颜色按飞书原生生效。 */
+:is(
+  pre,
+  .docx-code-block,
+  .ql-syntax,
+  [data-element-type="codeBlock"],
+  [data-block-type="code"],
+  [class*="code-block"],
+  .code-block,
+  .ace_editor,
+  .ace-line
+) :is(
+  .inline-code,
+  [class*="inlineCode"],
+  [data-element-type="inlineCode"],
+  span[style*="monospace" i],
+  span[style*="JetBrains Mono" i],
+  span[style*="Fira Code" i],
+  span[style*="Consolas" i]
+) {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: revert !important;
+  font-weight: revert !important;
+  font-style: revert !important;
+}
+
+/* 列表 */
+ul,
+ol,
+.docx-bullet-block,
+.docx-ordered-block,
+[data-element-type="bulletList"],
+[data-element-type="orderedList"] {
+  line-height: 1.8 !important;
+}
+
+ul,
+.markdown-body ul,
+[data-element-type="bulletList"] {
+  list-style-position: outside !important;
+  padding-left: 1.55em !important;
+  margin-top: 0.42em !important;
+  margin-bottom: 0.82em !important;
+}
+
+ol,
+.markdown-body ol,
+[data-element-type="orderedList"] {
+  list-style-position: outside !important;
+  padding-left: 1.72em !important;
+  margin-top: 0.42em !important;
+  margin-bottom: 0.82em !important;
+}
+
+li,
+ul > li,
+ol > li,
+.docx-bullet-block,
+.docx-ordered-block,
+[data-element-type="bulletList"] > *,
+[data-element-type="orderedList"] > * {
+  padding-left: 0.12em !important;
+  margin-bottom: 6px !important;
+}
+
+ul > li::marker,
+.markdown-body ul > li::marker {
+  color: #7f8793 !important;
+  font-size: 0.82em !important;
+}
+
+ol > li::marker,
+.markdown-body ol > li::marker {
+  color: var(--fs-strong) !important;
+  font-weight: 650 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* 引用块 */
+:where(
+  blockquote,
+  .markdown-body blockquote,
+  .docx-quote-block,
+  [data-element-type="quote"],
+  [data-block-type="15"],
+  [data-block-type="34"]
+) {
+  display: block !important;
+  box-sizing: border-box !important;
+  background: var(--fs-quote-bg) !important;
+  border: 1px solid var(--fs-quote-outline) !important;
+  border-left: 4px solid var(--fs-quote-border) !important;
+  border-radius: 8px !important;
+  color: var(--fs-quote-text) !important;
+  padding: 0.62em 0.96em !important;
+  margin: 0.75em 0 !important;
+}
+
+/* 引用容器 */
+:where(
+  [class*="quote-block" i],
+  [class*="quote_container" i],
+  [class*="quote-container" i]
+) {
+  background: var(--fs-quote-bg) !important;
+  border: 1px solid var(--fs-quote-outline) !important;
+  border-left: 4px solid var(--fs-quote-border) !important;
+  border-radius: 8px !important;
+}
+
+/* 引用嵌套层 */
+:where(
+  [class*="quote-block" i],
+  [class*="quote_container" i],
+  [class*="quote-container" i]
+) :where(
+  [class*="quote-block" i],
+  [class*="quote_container" i],
+  [class*="quote-container" i],
+  [class*="quote-inner" i],
+  [class*="quote-content" i]
+) {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+:where(
+  blockquote,
+  .markdown-body blockquote,
+  .docx-quote-block,
+  [data-element-type="quote"],
+  [data-block-type="15"],
+  [data-block-type="34"]
+) > :first-child {
+  margin-top: 0 !important;
+}
+
+:where(
+  blockquote,
+  .markdown-body blockquote,
+  .docx-quote-block,
+  [data-element-type="quote"],
+  [data-block-type="15"],
+  [data-block-type="34"]
+) > :last-child {
+  margin-bottom: 0 !important;
+}
+
+:where(
+  blockquote,
+  .markdown-body blockquote,
+  .docx-quote-block,
+  [data-element-type="quote"],
+  [data-block-type="15"],
+  [data-block-type="34"]
+) :where(p, li, span) {
+  color: inherit !important;
+}
+
+/* QuoteContainer 结构层 */
+:where([data-block-type="34"]) :where(
+  [data-block-type="15"],
+  [class*="quote-container" i],
+  [class*="quote_container" i],
+  [class*="quote-inner" i],
+  [class*="quote-content" i]
+) {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 表格 */
+table,
+.markdown-body table,
+.docx-table-block table,
+[data-element-type="table"] table,
+[class*="table"] table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid var(--fs-table-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+th,
+td,
+.markdown-body th,
+.markdown-body td,
+.docx-table-block th,
+.docx-table-block td,
+[data-element-type="table"] th,
+[data-element-type="table"] td,
+[class*="table"] th,
+[class*="table"] td {
+  border-color: var(--fs-table-border) !important;
+  line-height: 1.7 !important;
+  padding: 0.62em 0.78em !important;
+}
+
+.docx-table-block th,
+.docx-table-block td,
+[data-element-type="table"] th,
+[data-element-type="table"] td {
+  line-height: 1.45 !important;
+  padding-top: 0.38em !important;
+  padding-bottom: 0.38em !important;
+}
+
+.docx-table-block :is(p, .docx-text-block, [data-element-type="paragraph"]),
+[data-element-type="table"] :is(p, .docx-text-block, [data-element-type="paragraph"]) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  line-height: inherit !important;
+}
+
+th,
+.markdown-body th,
+.docx-table-block th,
+[data-element-type="table"] th,
+[class*="table"] th {
+  background-color: var(--fs-table-head-bg) !important;
+  color: var(--fs-heading) !important;
+  font-weight: 650 !important;
+}
+
+article ::selection,
+.markdown-body ::selection,
+.docx-text-block ::selection,
+.docx-heading1-block ::selection,
+.docx-heading2-block ::selection,
+.docx-heading3-block ::selection,
+.docx-heading4-block ::selection,
+.docx-heading5-block ::selection,
+.docx-heading6-block ::selection,
+.docx-bullet-block ::selection,
+.docx-ordered-block ::selection,
+.docx-quote-block ::selection,
+.docx-table-block ::selection {
+  background: rgba(168, 107, 94, 0.16) !important;
+}
+
+/* 飞书正文细节 */
+.docx-text-block,
+.docx-text-block span,
+.docx-bullet-block,
+.docx-bullet-block span,
+.docx-ordered-block,
+.docx-ordered-block span,
+.docx-quote-block,
+.docx-quote-block span,
+.markdown-body,
+.markdown-body p,
+.markdown-body li,
+.markdown-body span,
+[data-element-type="paragraph"],
+[data-element-type="paragraph"] span,
+[data-element-type="bulletList"],
+[data-element-type="bulletList"] span,
+[data-element-type="orderedList"],
+[data-element-type="orderedList"] span {
+  font-family: var(--fs-font-main) !important;
+  font-size: 16px !important;
+  line-height: 1.85 !important;
+}
+
+h1,
+h1 span,
+.docx-heading1-block,
+.docx-heading1-block span,
+[data-element-type="heading1"],
+[data-element-type="heading1"] span {
+  font-family: var(--fs-font-main) !important;
+  font-size: 24px !important;
+  line-height: 1.42 !important;
+  font-weight: 650 !important;
+  color: var(--fs-heading) !important;
+}
+
+h2,
+h2 span,
+.docx-heading2-block,
+.docx-heading2-block span,
+[data-element-type="heading2"],
+[data-element-type="heading2"] span {
+  font-family: var(--fs-font-main) !important;
+  font-size: 21px !important;
+  line-height: 1.42 !important;
+  font-weight: 650 !important;
+  color: var(--fs-heading) !important;
+}
+
+h3,
+h3 span,
+.docx-heading3-block,
+.docx-heading3-block span,
+[data-element-type="heading3"],
+[data-element-type="heading3"] span {
+  font-family: var(--fs-font-main) !important;
+  font-size: 18.5px !important;
+  line-height: 1.46 !important;
+  font-weight: 650 !important;
+  color: var(--fs-heading) !important;
+}
+
+h4,
+h4 span,
+.docx-heading4-block,
+.docx-heading4-block span,
+[data-element-type="heading4"],
+[data-element-type="heading4"] span {
+  font-family: var(--fs-font-main) !important;
+  font-size: 17px !important;
+  line-height: 1.5 !important;
+  font-weight: 650 !important;
+  color: var(--fs-heading) !important;
+}
+
+h5,
+h5 span,
+.docx-heading5-block,
+.docx-heading5-block span,
+[data-element-type="heading5"],
+[data-element-type="heading5"] span {
+  font-family: var(--fs-font-main) !important;
+  font-size: 16px !important;
+  line-height: 1.52 !important;
+  font-weight: 650 !important;
+  color: var(--fs-heading) !important;
+}
+
+h6,
+h6 span,
+.docx-heading6-block,
+.docx-heading6-block span,
+[data-element-type="heading6"],
+[data-element-type="heading6"] span {
+  font-family: var(--fs-font-main) !important;
+  font-size: 15.5px !important;
+  line-height: 1.52 !important;
+  font-weight: 650 !important;
+  color: var(--fs-heading) !important;
+}
+
+.docx-text-block code:not(pre code),
+.docx-text-block .inline-code,
+.docx-text-block [class*="inline-code" i],
+.docx-text-block [class*="inlineCode" i],
+.docx-text-block [class*="codeSpan" i],
+.docx-text-block [data-element-type*="inlinecode" i],
+.docx-text-block [data-type*="inlinecode" i],
+.docx-text-block span[style*="monospace" i],
+.docx-text-block span[style*="JetBrains Mono" i],
+.docx-text-block span[style*="Fira Code" i],
+.docx-text-block span[style*="Consolas" i],
+.docx-bullet-block code:not(pre code),
+.docx-bullet-block .inline-code,
+.docx-bullet-block [class*="inline-code" i],
+.docx-bullet-block [class*="inlineCode" i],
+.docx-bullet-block [class*="codeSpan" i],
+.docx-bullet-block [data-element-type*="inlinecode" i],
+.docx-bullet-block [data-type*="inlinecode" i],
+.docx-bullet-block span[style*="monospace" i],
+.docx-bullet-block span[style*="JetBrains Mono" i],
+.docx-bullet-block span[style*="Fira Code" i],
+.docx-bullet-block span[style*="Consolas" i],
+.docx-ordered-block code:not(pre code),
+.docx-ordered-block .inline-code,
+.docx-ordered-block [class*="inline-code" i],
+.docx-ordered-block [class*="inlineCode" i],
+.docx-ordered-block [class*="codeSpan" i],
+.docx-ordered-block [data-element-type*="inlinecode" i],
+.docx-ordered-block [data-type*="inlinecode" i],
+.docx-ordered-block span[style*="monospace" i],
+.docx-ordered-block span[style*="JetBrains Mono" i],
+.docx-ordered-block span[style*="Fira Code" i],
+.docx-ordered-block span[style*="Consolas" i],
+.markdown-body [class*="inline-code" i],
+.markdown-body [class*="inlineCode" i],
+.markdown-body [class*="codeSpan" i] {
+  background-color: var(--fs-code-bg) !important;
+  border: 1px solid var(--fs-code-border) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  margin: 0 2px !important;
+  font-family: var(--fs-font-code) !important;
+  font-size: 0.9em !important;
+  color: var(--fs-code-text) !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  white-space: break-spaces !important;
+}
+
+.docx-text-block strong code:not(pre code),
+.docx-text-block b code:not(pre code),
+.docx-text-block strong .inline-code,
+.docx-text-block b .inline-code,
+.docx-text-block strong [class*="inline-code" i],
+.docx-text-block b [class*="inline-code" i],
+.docx-text-block strong [class*="inlineCode" i],
+.docx-text-block b [class*="inlineCode" i],
+.docx-text-block [style*="font-weight:bold" i] code:not(pre code),
+.docx-text-block [style*="font-weight: bold" i] code:not(pre code),
+.docx-text-block [style*="font-weight:700" i] code:not(pre code),
+.docx-text-block [style*="font-weight: 700" i] code:not(pre code),
+.docx-text-block [style*="font-weight:bold" i] .inline-code,
+.docx-text-block [style*="font-weight: bold" i] .inline-code,
+.docx-text-block [style*="font-weight:700" i] .inline-code,
+.docx-text-block [style*="font-weight: 700" i] .inline-code,
+.docx-text-block [class*="inline-code" i][style*="font-weight" i],
+.docx-text-block [class*="inlineCode" i][style*="font-weight" i],
+.docx-text-block code:has(strong),
+.docx-text-block code:has(b),
+.docx-text-block .inline-code:has(strong),
+.docx-text-block .inline-code:has(b),
+.docx-bullet-block strong code:not(pre code),
+.docx-bullet-block b code:not(pre code),
+.docx-ordered-block strong code:not(pre code),
+.docx-ordered-block b code:not(pre code),
+.markdown-body strong code:not(pre code),
+.markdown-body b code:not(pre code) {
+  background-color: var(--fs-strong-code-bg) !important;
+  border-color: var(--fs-strong-code-border) !important;
+  color: var(--fs-strong-code-text) !important;
+  font-weight: 650 !important;
+  font-style: normal !important;
+}
+
+.docx-text-block em code:not(pre code),
+.docx-text-block i code:not(pre code),
+.docx-text-block em .inline-code,
+.docx-text-block i .inline-code,
+.docx-text-block em [class*="inline-code" i],
+.docx-text-block i [class*="inline-code" i],
+.docx-text-block em [class*="inlineCode" i],
+.docx-text-block i [class*="inlineCode" i],
+.docx-text-block [style*="font-style:italic" i] code:not(pre code),
+.docx-text-block [style*="font-style: italic" i] code:not(pre code),
+.docx-text-block [style*="font-style:italic" i] .inline-code,
+.docx-text-block [style*="font-style: italic" i] .inline-code,
+.docx-text-block [class*="inline-code" i][style*="font-style" i],
+.docx-text-block [class*="inlineCode" i][style*="font-style" i],
+.docx-text-block code:has(em),
+.docx-text-block code:has(i),
+.docx-text-block .inline-code:has(em),
+.docx-text-block .inline-code:has(i),
+.docx-bullet-block em code:not(pre code),
+.docx-bullet-block i code:not(pre code),
+.docx-ordered-block em code:not(pre code),
+.docx-ordered-block i code:not(pre code),
+.markdown-body em code:not(pre code),
+.markdown-body i code:not(pre code) {
+  background-color: var(--fs-em-code-bg) !important;
+  border-color: var(--fs-em-code-border) !important;
+  color: var(--fs-em-code-text) !important;
+  font-style: normal !important;
+  font-weight: 550 !important;
+}
+
+/* 文档标题 */
+:where(
+  [contenteditable="true"][placeholder*="标题"],
+  [contenteditable="true"][aria-label*="标题"],
+  [contenteditable="true"][data-placeholder*="标题"],
+  :is(
+    [data-element-type="title"],
+    [data-element-type="documentTitle"],
+    [data-element-type="docTitle"],
+    [data-element-type="docName"],
+    [data-element-type="fileName"],
+    [data-element-type="pageTitle"],
+    [class*="doc-title" i],
+    [class*="document-title" i],
+    [class*="docs-title" i],
+    [class*="wiki-title" i],
+    [class*="cover-title" i],
+    [class*="docx-title" i],
+    [class*="page-title" i],
+    [class*="title-input" i],
+    [class*="title-editor" i],
+    [class*="title-content" i],
+    [class*="title-container" i]
+  ):has([contenteditable="true"])
+) {
+  font-family: var(--fs-font-main) !important;
+  font-size: 30px !important;
+  line-height: 1.28 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  color: var(--fs-heading) !important;
+}
+
+:where(
+  [contenteditable="true"][placeholder*="标题"],
+  [contenteditable="true"][aria-label*="标题"],
+  [contenteditable="true"][data-placeholder*="标题"],
+  :is(
+    [data-element-type="title"],
+    [data-element-type="documentTitle"],
+    [data-element-type="docTitle"],
+    [data-element-type="docName"],
+    [data-element-type="fileName"],
+    [data-element-type="pageTitle"],
+    [class*="doc-title" i],
+    [class*="document-title" i],
+    [class*="docs-title" i],
+    [class*="wiki-title" i],
+    [class*="cover-title" i],
+    [class*="docx-title" i],
+    [class*="page-title" i],
+    [class*="title-input" i],
+    [class*="title-editor" i],
+    [class*="title-content" i],
+    [class*="title-container" i]
+  ):has([contenteditable="true"])
+) :where([contenteditable="true"], [contenteditable="true"] *) {
+  font-family: var(--fs-font-main) !important;
+  font-size: 30px !important;
+  line-height: 1.28 !important;
+  font-weight: 700 !important;
+  color: var(--fs-heading) !important;
+}
+
+:where(
+  :is(
+    [data-element-type="title"],
+    [data-element-type="documentTitle"],
+    [data-element-type="docTitle"],
+    [data-element-type="docName"],
+    [data-element-type="fileName"],
+    [data-element-type="pageTitle"],
+    [class*="doc-title" i],
+    [class*="document-title" i],
+    [class*="docs-title" i],
+    [class*="wiki-title" i],
+    [class*="cover-title" i],
+    [class*="docx-title" i],
+    [class*="page-title" i],
+    [class*="title-input" i],
+    [class*="title-editor" i],
+    [class*="title-content" i],
+    [class*="title-container" i]
+  ):has([contenteditable="true"])
+) [contenteditable="true"] {
+  font-family: var(--fs-font-main) !important;
+  font-size: 30px !important;
+  line-height: 1.28 !important;
+  font-weight: 700 !important;
+  color: var(--fs-heading) !important;
+}
+
+/* 任务与待办块 */
+/* 复选框交互 */
+article :where(
+  .docx-task-block,
+  .docx-todo-block,
+  .docx-checkbox-block,
+  [data-element-type*="task" i],
+  [data-element-type*="todo" i],
+  [data-element-type*="checkbox" i],
+  [data-block-type="17"],
+  [data-block-type*="task" i],
+  [data-block-type*="todo" i],
+  [data-block-type*="checkbox" i],
+  [class*="task-block" i],
+  [class*="todo-block" i],
+  [class*="checkbox-block" i],
+  [class*="task-list" i],
+  [class*="todo-list" i],
+  [class*="check-list" i]
+),
+article :where(div, li, p, section):has(:where(
+  input[type="checkbox"],
+  [role="checkbox"],
+  [aria-checked],
+  [class*="checkbox" i],
+  [class*="check-box" i]
+)) {
+  font-family: var(--fs-font-main) !important;
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+}
+
+article :where(
+  .docx-task-block,
+  .docx-todo-block,
+  .docx-checkbox-block,
+  [data-element-type*="task" i],
+  [data-element-type*="todo" i],
+  [data-element-type*="checkbox" i],
+  [data-block-type="17"],
+  [data-block-type*="task" i],
+  [data-block-type*="todo" i],
+  [data-block-type*="checkbox" i],
+  [class*="task-block" i],
+  [class*="todo-block" i],
+  [class*="checkbox-block" i],
+  [class*="task-list" i],
+  [class*="todo-list" i],
+  [class*="check-list" i]
+) :where(input[type="checkbox"], [role="checkbox"], [aria-checked]),
+article :where(div, li, p, section):has(:where(input[type="checkbox"], [role="checkbox"], [aria-checked])) :where(input[type="checkbox"], [role="checkbox"], [aria-checked]) {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  transform: none !important;
+  zoom: 1 !important;
+}
