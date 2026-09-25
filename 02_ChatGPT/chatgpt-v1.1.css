@@ -1,0 +1,305 @@
+/* ==========================================
+   Stylus-CSS v1.1-ChatGPT
+   仿深色 / 莫兰迪 / 马卡龙高级色系
+
+   适用域名：
+   - chatgpt.com
+   - chat.openai.com
+   ========================================== */
+
+/* V1.1 更新说明（相较 V1.0）：
+   ChatGPT 页面更新后，V1.0 依赖 main、.markdown、.prose 等容器的规则未能稳定命中。
+   本版改用正文元素选择器，恢复排版、强调、行内代码、列表、链接、引用、表格和选区样式；
+   保留 V1.0 的配色与独立代码块处理方式。 */
+
+/* ==========================================
+   0. 主题变量
+   ========================================== */
+:root {
+  --gpt-font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+  --gpt-font-code: "JetBrains Mono", "Fira Code", "SFMono-Regular", "Consolas", monospace;
+
+  --gpt-text: #4a4e59;
+  --gpt-heading: #33363f;
+  --gpt-muted: #6f7782;
+
+  --gpt-strong: #a86b5e;
+  --gpt-em: #72728f;
+
+  --gpt-code-bg: #eef2f5;
+  --gpt-code-border: #dce4e8;
+  --gpt-code-text: #5c7080;
+
+  --gpt-strong-code-bg: #f7ebed;
+  --gpt-strong-code-border: #e8d5d8;
+  --gpt-strong-code-text: #9e6371;
+
+  --gpt-em-code-bg: #eaf2ed;
+  --gpt-em-code-border: #d3e3d9;
+  --gpt-em-code-text: #5a8067;
+
+  --gpt-link: #6b7f9f;
+  --gpt-quote-bg: #fbf8f7;
+  --gpt-quote-border: #d8c3bf;
+  --gpt-table-border: #e3e7eb;
+  --gpt-table-head-bg: #f7f8fa;
+  --gpt-codeblock-bg: #f8f8f8;
+  --gpt-codeblock-border: #eceff2;
+}
+
+/* ==========================================
+   1. 全局基础排版
+   使用语义元素定位内容，避免依赖 ChatGPT 易变的消息容器；部分侧栏文字也会受到影响。
+   ========================================== */
+body,
+body :where(p, article, li, blockquote, table, td, th, [class*="message-content"], .markdown, .prose, .whitespace-pre-wrap),
+#prompt-textarea,
+textarea {
+  font-family: var(--gpt-font-main) !important;
+  color: var(--gpt-text) !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+body :where(p, li, blockquote, table, td, th),
+#prompt-textarea,
+textarea {
+  line-height: 1.8 !important;
+}
+
+body p {
+  margin-top: 0.72em !important;
+  margin-bottom: 0.72em !important;
+}
+
+/* ==========================================
+   2. 标题系统
+   沉稳碳灰色，仿深色但不压黑。
+   ========================================== */
+body :where(h1, h2, h3, h4, h5, h6) {
+  font-weight: 650 !important;
+  line-height: 1.42 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--gpt-heading) !important;
+}
+
+body h1 {
+  font-size: 1.45em !important;
+  margin-top: 1.08em !important;
+  margin-bottom: 0.48em !important;
+}
+
+body h2 {
+  font-size: 1.25em !important;
+  margin-top: 1em !important;
+  margin-bottom: 0.42em !important;
+}
+
+body h3 {
+  font-size: 1.12em !important;
+  margin-top: 0.92em !important;
+  margin-bottom: 0.36em !important;
+}
+
+body :where(h4, h5, h6) {
+  font-size: 1em !important;
+  margin-top: 0.82em !important;
+  margin-bottom: 0.3em !important;
+}
+
+/* ==========================================
+   3. 普通文本强调系统
+   核心结论 / 动词 -> 莫兰迪沉木红 / 暗陶土色
+   次要属性 / 状态 -> 莫兰迪烟雾蓝紫
+   ========================================== */
+body :where(strong, b),
+body [style*="font-weight:bold"],
+body [style*="font-weight: bold"],
+body [style*="font-weight:700"],
+body [style*="font-weight: 700"] {
+  font-weight: 650 !important;
+  color: var(--gpt-strong) !important;
+}
+
+body :where(em, i),
+body [style*="font-style:italic"],
+body [style*="font-style: italic"] {
+  font-style: italic !important;
+  color: var(--gpt-em) !important;
+}
+
+/* ==========================================
+   4. 链接系统
+   新增但克制：蓝灰链接，避免破坏莫兰迪主色。
+   ========================================== */
+body :where(p, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, article, .markdown, .prose) a {
+  color: var(--gpt-link) !important;
+  text-decoration-color: rgba(107, 127, 159, 0.36) !important;
+  text-underline-offset: 3px !important;
+}
+
+body :where(p, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, article, .markdown, .prose) a:hover {
+  color: #536f94 !important;
+  text-decoration-color: rgba(83, 111, 148, 0.68) !important;
+}
+
+/* ==========================================
+   5. 行内代码块系统：三级高亮机制
+   Level 1: 普通行内代码 -> 极浅灰蓝
+   ========================================== */
+body :where(code:not(pre code), .inline-code:not(pre .inline-code), [class*="inlineCode"]:not(pre *), [data-element-type="inlineCode"]:not(pre *)) {
+  background-color: var(--gpt-code-bg) !important;
+  border: 1px solid var(--gpt-code-border) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  margin: 0 2px !important;
+  font-family: var(--gpt-font-code) !important;
+  font-size: 0.88em !important;
+  color: var(--gpt-code-text) !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  white-space: break-spaces !important;
+}
+
+/* Level 2: 核心高亮代码，加粗 + 代码 -> 干枯玫瑰粉 */
+body :where(strong, b, [style*="font-weight:bold"], [style*="font-weight: bold"], [style*="font-weight:700"], [style*="font-weight: 700"]) :where(code:not(pre code), .inline-code:not(pre .inline-code)),
+body :where(code:not(pre code), .inline-code:not(pre .inline-code)) :where(strong, b, [style*="font-weight:bold"], [style*="font-weight: bold"], [style*="font-weight:700"], [style*="font-weight: 700"]),
+body :where(code:has(strong):not(pre code), code:has(b):not(pre code), .inline-code:has(strong):not(pre .inline-code), .inline-code:has(b):not(pre .inline-code)) {
+  background-color: var(--gpt-strong-code-bg) !important;
+  border-color: var(--gpt-strong-code-border) !important;
+  color: var(--gpt-strong-code-text) !important;
+  font-weight: 650 !important;
+  font-style: normal !important;
+}
+
+/* Level 3: 状态与协议代码，斜体 + 代码 -> 鼠尾草绿 */
+body :where(em, i, [style*="font-style:italic"], [style*="font-style: italic"]) :where(code:not(pre code), .inline-code:not(pre .inline-code)),
+body :where(code:not(pre code), .inline-code:not(pre .inline-code)) :where(em, i, [style*="font-style:italic"], [style*="font-style: italic"]),
+body :where(code:has(em):not(pre code), code:has(i):not(pre code), .inline-code:has(em):not(pre .inline-code), .inline-code:has(i):not(pre .inline-code)) {
+  background-color: var(--gpt-em-code-bg) !important;
+  border-color: var(--gpt-em-code-border) !important;
+  color: var(--gpt-em-code-text) !important;
+  font-style: normal !important;
+  font-weight: 550 !important;
+}
+
+/* 三级高亮权重修正：
+   ChatGPT 的普通 code 规则比较强，这里用更具体的选择器确保加粗/斜体代码能盖过去。 */
+body :is(strong, b) :is(code:not(pre code), .inline-code:not(pre .inline-code)),
+body :is(code:not(pre code), .inline-code:not(pre .inline-code)):has(:is(strong, b)),
+body :is(code:not(pre code), .inline-code:not(pre .inline-code)) :is(strong, b) {
+  background-color: var(--gpt-strong-code-bg) !important;
+  border-color: var(--gpt-strong-code-border) !important;
+  color: var(--gpt-strong-code-text) !important;
+  font-weight: 650 !important;
+  font-style: normal !important;
+}
+
+body :is(em, i) :is(code:not(pre code), .inline-code:not(pre .inline-code)),
+body :is(code:not(pre code), .inline-code:not(pre .inline-code)):has(:is(em, i)),
+body :is(code:not(pre code), .inline-code:not(pre .inline-code)) :is(em, i) {
+  background-color: var(--gpt-em-code-bg) !important;
+  border-color: var(--gpt-em-code-border) !important;
+  color: var(--gpt-em-code-text) !important;
+  font-style: normal !important;
+  font-weight: 550 !important;
+}
+
+/* ==========================================
+   6. 独立代码块样式隔离
+   保持原生：不对独立代码块（pre/code）做任何渲染改写。
+   ========================================== */
+
+/* ==========================================
+   7. 列表优化
+   ========================================== */
+body :where(ul, ol) {
+  line-height: 1.8 !important;
+}
+
+body li {
+  margin-bottom: 6px !important;
+}
+
+body li::marker {
+  color: #7f8793 !important;
+}
+
+/* 侧栏导航若使用列表，避免改变其缩进；正文列表仍沿用 V1.0 的尺寸。 */
+body ul:not(nav ul, aside ul, [role="navigation"] ul) {
+  list-style-position: outside !important;
+  padding-left: 1.55em !important;
+  margin-top: 0.42em !important;
+  margin-bottom: 0.82em !important;
+}
+
+body ol:not(nav ol, aside ol, [role="navigation"] ol) {
+  list-style-position: outside !important;
+  padding-left: 1.72em !important;
+  margin-top: 0.42em !important;
+  margin-bottom: 0.82em !important;
+}
+
+body :where(ul, ol) > li {
+  padding-left: 0.12em !important;
+  margin-bottom: 6px !important;
+}
+
+body ul > li::marker {
+  color: #7f8793 !important;
+  font-size: 0.82em !important;
+}
+
+body ol > li::marker {
+  color: var(--gpt-strong) !important;
+  font-weight: 650 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* ==========================================
+   8. 引用块
+   新增：低饱和陶土边线，接近文档批注。
+   ========================================== */
+body blockquote {
+  background: var(--gpt-quote-bg) !important;
+  border-left: 3px solid var(--gpt-quote-border) !important;
+  border-radius: 6px !important;
+  color: var(--gpt-muted) !important;
+  padding: 0.55em 0.9em !important;
+}
+
+body blockquote p {
+  color: inherit !important;
+}
+
+/* ==========================================
+   9. 表格
+   新增：轻文档化表格，不改变信息结构。
+   ========================================== */
+body table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid var(--gpt-table-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+body :where(th, td) {
+  border-color: var(--gpt-table-border) !important;
+  line-height: 1.7 !important;
+  padding: 0.62em 0.78em !important;
+}
+
+body th {
+  background-color: var(--gpt-table-head-bg) !important;
+  color: var(--gpt-heading) !important;
+  font-weight: 650 !important;
+}
+
+/* ==========================================
+   10. 选中文本
+   新增：浅陶土选区，复制时更统一。
+   ========================================== */
+body ::selection {
+  background: rgba(168, 107, 94, 0.16) !important;
+}
