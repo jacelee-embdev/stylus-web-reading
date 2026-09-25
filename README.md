@@ -9,7 +9,7 @@ This project provides separate Stylus CSS styles for Feishu documents, Gemini, a
 | Website | Style file | Stylus domain |
 | --- | --- | --- |
 | Feishu | [feishu-v1.0.css](01_Feishu/feishu-v1.0.css) | `feishu.cn` |
-| ChatGPT | [chatgpt-v1.1.css](02_ChatGPT/chatgpt-v1.1.css) | `chatgpt.com`, `chat.openai.com` |
+| ChatGPT | [chatgpt-v1.2.css](02_ChatGPT/chatgpt-v1.2.css) | `chatgpt.com`, `chat.openai.com` |
 | Gemini | [gemini-v1.0.css](03_Gemini/gemini-v1.0.css) | `gemini.google.com` |
 
 ## Usage Guide
@@ -51,7 +51,7 @@ Each image shows the same scene side by side: the original display on the left a
 
 4. Open the corresponding `.css` file in the table above and paste its full contents into the Stylus editor.
 
-   The ChatGPT V1.0 source remains at `02_ChatGPT/chatgpt-v1.0.css`. Use V1.1 from the table, and do not enable both ChatGPT styles at the same time.
+   The ChatGPT V1.0 and V1.1 sources remain available in `02_ChatGPT/`. Use V1.2 from the table, and enable only one ChatGPT style at a time. V1.2 fixes the extra inner background and border on standalone code blocks.
 
    ![Paste the CSS source](image/Stylus_PasteCSS.png)
 

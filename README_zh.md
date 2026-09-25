@@ -9,7 +9,7 @@
 | 网站 | 样式文件 | Stylus 生效域名 |
 | --- | --- | --- |
 | 飞书 | [feishu-v1.0.css](01_Feishu/feishu-v1.0.css) | `feishu.cn` |
-| ChatGPT | [chatgpt-v1.1.css](02_ChatGPT/chatgpt-v1.1.css) | `chatgpt.com`、`chat.openai.com` |
+| ChatGPT | [chatgpt-v1.2.css](02_ChatGPT/chatgpt-v1.2.css) | `chatgpt.com`、`chat.openai.com` |
 | Gemini | [gemini-v1.0.css](03_Gemini/gemini-v1.0.css) | `gemini.google.com` |
 
 ## 使用说明
@@ -51,7 +51,7 @@
 
 4. 打开上表中对应的 `.css` 文件，将完整内容复制到 Stylus 编辑器。
 
-   ChatGPT 的 V1.0 源文件仍保留在 `02_ChatGPT/chatgpt-v1.0.css`；请复制表格中的 V1.1 文件，不要同时启用两个 ChatGPT 样式。
+   ChatGPT 的 V1.0 和 V1.1 源文件仍保留在 `02_ChatGPT/`；请复制表格中的 V1.2 文件，一次只启用一个 ChatGPT 样式。V1.2 修复了独立代码块多出内层背景和边框的问题。
 
    ![粘贴 CSS 源码](image/Stylus_PasteCSS.png)
 
